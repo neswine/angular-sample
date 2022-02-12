@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { BorrowedItem } from '../../profile.interface';
 
 @Component({
@@ -9,9 +9,18 @@ import { BorrowedItem } from '../../profile.interface';
 export class ProfileViewComponent implements OnInit {
 
   @Input('list') list: BorrowedItem[] = [];
+  @Output('click') onActionClick: EventEmitter<any> = new EventEmitter();
+  tableConfig: { headers: string[], actions: string[] } = {
+    headers: ['#', 'Author', 'Name'],
+    actions: ['Return']
+  }
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  borrowClickHandle(e: any) {
+    this.onActionClick.emit(e);
   }
 
 }

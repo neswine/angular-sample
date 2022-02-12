@@ -11,6 +11,10 @@ export class TableListComponent implements OnInit {
 
   list: ListItems[] = [];
   @Input('list') listItems: ListItems[] | BorrowedItem [] = [];
+  @Input('config') config: any = {
+    headers: [],
+    actions: []
+  };
   @Output('borrowClick') borrorClickEvent: EventEmitter<any> = new EventEmitter();
   constructor() { }
 

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpBaseServiceService } from 'src/app/shared/services/http-base-service.service';
 import { BorrowedItem } from '../profile.interface';
 
 @Injectable({
@@ -6,21 +8,15 @@ import { BorrowedItem } from '../profile.interface';
 })
 export class ApiServiceService {
 
-  constructor() { }
+  constructor(
+    private http: HttpBaseServiceService
+  ) { }
 
-  public getBorrowedBooks(): BorrowedItem[] {
-    return [{
-      id: 1,
-      name: 'Borrowed 1',
-      author: 'sss'
-    }, {
-      id: 2,
-      author: 'sss',
-      name: 'Borrowed 2'
-    }, {
-      id: 3,
-      author: 'sss',
-      name: 'Borrowed 3'
-    }]
+  public getBorrowedBooks(): Observable<BorrowedItem[]> {
+    return this.http.get('/user/view');
+  }
+
+  public returnBook(item: any): Observable<any> {
+    return this.http.post('/library/return', { id: item.id })
   }
 }

@@ -15,7 +15,24 @@ export class ProfilePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.list = this.apiService.getBorrowedBooks();
+    this.getBorrowedList();
+  }
+
+  getBorrowedList() {
+    this.apiService.getBorrowedBooks()
+      .subscribe((res: any) => {
+        this.list = res.data;
+      }, () => {
+        alert('Something went wrong')
+      });
+  }
+
+  onClickHandle(e: any) {
+    this.apiService.returnBook(e)
+      .subscribe((res: any) => {
+        alert('Book returned');
+        this.getBorrowedList();
+      });
   }
 
 }
