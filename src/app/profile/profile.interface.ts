@@ -1,5 +1,6 @@
 export interface BorrowedItem {
     id: number;
-    code: number;
     name: string;
+    author: string;
+    quantity?: number;
 }

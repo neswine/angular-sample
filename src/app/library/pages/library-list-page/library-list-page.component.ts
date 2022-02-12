@@ -16,7 +16,22 @@ export class LibraryListPageComponent implements OnInit {
 
   ngOnInit(): void {
     //make api call
-    this.list = this.apiService.getBooks();
+    this.apiService.getBooks()
+      .subscribe((res: any) => {
+        console.log(res)
+        this.list = res.data;
+      }, () => {
+        alert('Something went wrong!');
+      });
+  }
+
+  borrowClickHandle(e: any) {
+    this.apiService.borrowBook(e)
+      .subscribe(res => {
+        alert('Book successfully borrowed');
+      }, () => {
+        alert('Something went wrong!');
+      });
   }
 
 }

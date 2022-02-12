@@ -11,15 +11,15 @@ export class ApiServiceService {
   public getBorrowedBooks(): BorrowedItem[] {
     return [{
       id: 1,
-      code: 123,
-      name: 'Borrowed 1'
+      name: 'Borrowed 1',
+      author: 'sss'
     }, {
       id: 2,
-      code: 123,
+      author: 'sss',
       name: 'Borrowed 2'
     }, {
       id: 3,
-      code: 123,
+      author: 'sss',
       name: 'Borrowed 3'
     }]
   }

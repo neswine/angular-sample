@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BorrowedItem } from 'src/app/profile/profile.interface';
 import { ListItems } from './table-list.interface'
 
 @Component({
@@ -9,10 +10,15 @@ import { ListItems } from './table-list.interface'
 export class TableListComponent implements OnInit {
 
   list: ListItems[] = [];
-  @Input('list') listItems: ListItems[] = [];
+  @Input('list') listItems: ListItems[] | BorrowedItem [] = [];
+  @Output('borrowClick') borrorClickEvent: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  borrowBook(item: any) {
+    this.borrorClickEvent.emit(item);
   }
   
 }

@@ -1,5 +1,6 @@
 export interface ListItems {
     id: number;
-    code: number;
+    author: string;
+    quantity: number;
     name: string;
 }
